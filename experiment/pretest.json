@@ -2,38 +2,49 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "Can there be more than 1 final path in a graph using minimax?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Yes",
+        "b": "No"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "When multiple minimum/maximum nodes are present then we can have multiple paths as we can chose any of the those",
+        "b": ""
       },
       "correctAnswer": "a",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "To solve minimax algorithm on a graph what kind of traversal do we use?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Depth First Trasversal",
+        "b": "Breadth First Traversal",
+        "c": "None of these"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "Since we have to build bottom up so we perform Depth First Traversal",
+        "b": "",
+        "c": ""
       },
-      "correctAnswer": "c",
+      "correctAnswer": "a",
       "difficulty": "beginner"
+    },
+    {
+      "question": "Where can we use minimax algorithm?",
+      "answers": {
+        "a": "Chess",
+        "b": "Go",
+        "c": "Tic Tac Toe",
+        "d": "All of these"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": "We can use minimax algorithm in all of these"
+      },
+      "correctAnswer": "d",
+      "difficulty": "intermediate"
     }
   ]
 }

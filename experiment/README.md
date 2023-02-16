@@ -150,3 +150,13 @@ This is till the automatic validation is set up.
 ### 8. TODO
 * Add automatic schema validation
 * Link to source files implementing the above tips.
+
+
+
+
+
+########
+
+1. Add description at each state
+2. Create 4-5 fix graphs and allow them to select, also allow them to change terminal states
+3. At next step give one more try to select the correct value/ give desc about min/max

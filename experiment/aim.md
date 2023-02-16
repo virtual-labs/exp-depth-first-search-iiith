@@ -1,3 +1,3 @@
 ### Aim of the experiment
 
-To understand how depth first search works in directed and undirected graphs.
+To understand how Minimax Search determines the optimal moves in strategy game

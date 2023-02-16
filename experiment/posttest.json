@@ -2,38 +2,38 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "In Tic-Tac-Toe, if we don't use depth as parameter while mapping to graph, then which of the follwoing will be true?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "There will be only 1 path",
+        "b": "We will terminate quickly as compared to when we use depth",
+        "c": "Both a and b",
+        "d": "None of these"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "There can be multiple paths",
+        "b": "It can take maximum time",
+        "c": "",
+        "d": ""
       },
-      "correctAnswer": "a",
+      "correctAnswer": "d",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "Alpha beta pruning is used for?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Reducing number of nodes that are considered",
+        "b": "Optimize minimax algorithm",
+        "c": "Mostly useful when large number of states such as in chess",
+        "d": "All of these"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
       },
-      "correctAnswer": "c",
-      "difficulty": "beginner"
+      "correctAnswer": "d",
+      "difficulty": "intermediate"
     }
   ]
 }

@@ -20,12 +20,12 @@
                 <div class="column">
                     <div class="v-tabs">
                         <ul>
-                            <li class="is-active" id="Task1">
+                            <li id="Task1"  onclick="vclear;window.location.href = 'index.html';">
                                 <a>
                                     Depth First Search
                                 </a>
                             </li>
-                            <li id="Task2" onclick="window.location.href = 'bfs.html';">
+                            <li class="is-active" id="Task2">
                                 <a>
                                     Breadth First Search
                                 </a>
@@ -59,8 +59,8 @@
                             <p>Start Vertex: </p> <input id="sv"  style="width:30px;">
                         </div>
                         <div style="margin:5px 0px">
-                            <button class="button" onclick="visit.push(Number(document.getElementById('sv').value)); DFS();">Start DFS</button>
-                            <button class="button" onclick="DFS();">Next</button>
+                            <button class="button" onclick="visit.push(Number(document.getElementById('sv').value)); BFS();">Start BFS</button>
+                            <button class="button" onclick="BFS();">Next</button>
                         </div>
                         <div style="margin:5px 0px">
                             <button class="button" onclick="tforce();">Toggle Forces</button>

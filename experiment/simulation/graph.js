@@ -31,9 +31,13 @@ function valid_input() {
     var inp = document.getElementById("sv");
     if(inp.value == "") {
         return;
-    } else if(inp.value > Number(inp.max)) {
-        inp.value = inp.max;
+    } else if(!exist[Number(inp.value)]) {
         document.getElementById('svl').style.color = "red";
+        inp.value = "";
+        return;
+    } else if(inp.value > Number(inp.max)) {
+        document.getElementById('svl').style.color = "red";
+        inp.value = inp.max;
     } else if(inp.value < Number(inp.min)) {
         document.getElementById('svl').style.color = "red";
         inp.value = inp.min;
@@ -53,12 +57,7 @@ setInterval(function() {
     }
     drawField();
     var inp = document.getElementById("sv");
-    inp.max = -1
-    for (var i of exist) {
-        if (i == true) {
-            inp.max = Number(inp.max) + 1;
-        }
-    }
+    inp.max = exist.length - 1;
 }, 30);
 
 canv.addEventListener('contextmenu', function(e) {

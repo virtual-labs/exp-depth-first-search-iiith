@@ -18,6 +18,13 @@ function refresh() {
         force();
     }
     drawField();
+    var inp = document.getElementById("sv");
+    inp.max = -1
+    for (var i of exist) {
+        if (i == true) {
+            inp.max = Number(inp.max) + 1;
+        }
+    }
 }
 
 var visit = [];

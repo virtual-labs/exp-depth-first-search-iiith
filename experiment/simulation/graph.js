@@ -22,12 +22,28 @@ var visiting_edge = [];
 
 var n = 0;
 
-
-
 document.oncontextmenu = false;
 canv.width = canv.offsetWidth;
 canv.height = canv.offsetHeight;
 ctx.font = "20px Arial";
+
+function valid_input() {
+    var inp = document.getElementById("sv");
+    if(inp.value == "") {
+        return;
+    } else if(inp.value > Number(inp.max)) {
+        inp.value = inp.max;
+        document.getElementById('svl').style.color = "red";
+    } else if(inp.value < Number(inp.min)) {
+        document.getElementById('svl').style.color = "red";
+        inp.value = inp.min;
+    } else if(parseFloat(inp.value) % 1 != 0) {
+        document.getElementById('svl').style.color = "red";
+        inp.value = Math.floor(inp.value);
+    } else {
+        document.getElementById('svl').style.color = "black";
+    }
+}
 
 setInterval(function() {
     canv.width = canv.offsetWidth;
@@ -36,6 +52,13 @@ setInterval(function() {
         force();
     }
     drawField();
+    var inp = document.getElementById("sv");
+    inp.max = -1
+    for (var i of exist) {
+        if (i == true) {
+            inp.max = Number(inp.max) + 1;
+        }
+    }
 }, 30);
 
 canv.addEventListener('contextmenu', function(e) {

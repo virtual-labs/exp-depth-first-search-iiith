@@ -31,19 +31,9 @@ function valid_input() {
     var inp = document.getElementById("sv");
     if(inp.value == "") {
         return;
-    } else if(!exist[Number(inp.value)]) {
+    } else if(inp.value > Number(inp.max) || inp.value < Number(inp.min) || parseFloat(inp.value) % 1 != 0 || !exist[Number(inp.value)]) {
         document.getElementById('svl').style.color = "red";
         inp.value = "";
-        return;
-    } else if(inp.value > Number(inp.max)) {
-        document.getElementById('svl').style.color = "red";
-        inp.value = inp.max;
-    } else if(inp.value < Number(inp.min)) {
-        document.getElementById('svl').style.color = "red";
-        inp.value = inp.min;
-    } else if(parseFloat(inp.value) % 1 != 0) {
-        document.getElementById('svl').style.color = "red";
-        inp.value = Math.floor(inp.value);
     } else {
         document.getElementById('svl').style.color = "black";
     }

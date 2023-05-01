@@ -10,44 +10,19 @@ function preset() {
     for (n = 1; n <= nodes.length; n++) { 
         exist.push(true);
     }
-}
-function refresh() {
-    canv.width = canv.offsetWidth;
-    canv.height = canv.offsetHeight;
-    if (type) {
-        force();
-    }
-    drawField();
-    var inp = document.getElementById("sv");
-    inp.max = -1
-    for (var i of exist) {
-        if (i == true) {
-            inp.max = Number(inp.max) + 1;
-        }
-    }
+    refresh();
 }
 
 var visit = [];
-var prev = null;
-var prevprev = null;
-
-function drawiter(e) {
-    visiting = e;
-    visiting_edge = [prev, e];
-    visited.push(prev);
-    visited_edge.push([prevprev, prev]);
-    refresh();
-
-    prevprev = prev;
-    prev = visiting;
-}
+var e;
 
 function DFS() {
     e = visit.pop();
-    drawiter(e);
+    visited.push(e);
+    refresh();
 
     for (const next of edges[e].slice().reverse()) {
-        if (!visited.includes(next)) {
+        if (!visited.includes(next) && !exist.includes(next)) {
             visit.push(next);
         }
     }
@@ -55,7 +30,8 @@ function DFS() {
 
 function BFS() {
     e = visit.shift();
-    drawiter(e);
+    visited.push(e);
+    refresh();
 
     for (const next of edges[e]) {
         if (!visited.includes(next)) {
@@ -68,5 +44,4 @@ var node_info;
 var edge_info;
 var status;
 
-preset();
-refresh();
+//preset();

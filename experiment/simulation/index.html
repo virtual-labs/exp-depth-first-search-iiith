@@ -56,10 +56,10 @@
                     <div class="v-datalist-title">Controls</div>
                     <div id="controlls" class="v-datalist-row">
                         <div style="margin:5px 0px">
-                            <label id="svl">Start Vertex: </label><input id="sv" type="number" min=0 max=1 step=1 style="width:50px;" onkeyup="valid_input();"/>
+                            <label id="svl">Start Vertex: </label><input id="sv" type="number" value=0 min=0 style="width:50px;"/>
                         </div>
                         <div style="margin:5px 0px">
-                            <button class="button" onclick="visit.push(Number(document.getElementById('sv').value)); DFS();">Start DFS</button>
+                            <button class="button" onclick="vclear(); visit.push(Number(document.getElementById('sv').value)); DFS();">Start DFS</button>
                             <button class="button" onclick="DFS();">Next</button>
                         </div>
                         <div style="margin:5px 0px">
@@ -76,9 +76,18 @@
             </div>
 
             <div class="column is-2-desktop is-12-tablet is-12-mobile">
-                <div class="v-datalist-container">
+                <div class="v-datalist-container" style="padding-left: 5px;">
                     <div class="v-datalist-title">Information</div>
-                    <div id="info" class="v-datalist-row">
+                    <div id="info" class="v-datalist-row" style="text-align:left;">
+                        <div style="margin:5px 0px">
+                            <label><span style="background-color:cyan;">&nbsp;&nbsp;</span>&nbsp;Visiting:&nbsp;</label><span id="visit_node"></span>
+                        </div>
+                        <div style="margin:5px 0px">
+                            <label><span style="background-color:orange;">&nbsp;&nbsp;</span>&nbsp;Frontier:&nbsp;</label><span id="visit_array"></span>
+                        </div>
+                        <div style="margin:5px 0px">
+                            <label><span style="background-color:yellow;">&nbsp;&nbsp;</span>&nbsp;To Visit:&nbsp;</label><span id="visiting_node"></span>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -17,9 +17,6 @@ var exist = [];
 var visited = [];
 var visited_edge = [];
 
-var visiting = null;
-var visiting_edge = [];
-
 var n = 0;
 
 document.oncontextmenu = false;
@@ -33,13 +30,12 @@ function valid_input() {
         return;
     } else if(inp.value > Number(inp.max) || inp.value < Number(inp.min) || parseFloat(inp.value) % 1 != 0 || !exist[Number(inp.value)]) {
         document.getElementById('svl').style.color = "red";
-        inp.value = "";
     } else {
         document.getElementById('svl').style.color = "black";
     }
 }
 
-setInterval(function() {
+function refresh() {
     canv.width = canv.offsetWidth;
     canv.height = canv.offsetHeight;
     if (type) {
@@ -47,13 +43,23 @@ setInterval(function() {
     }
     drawField();
     var inp = document.getElementById("sv");
-    inp.max = exist.length - 1;
-}, 30);
+    inp.max = exist.length-1;
+    valid_input();
+
+    document.getElementById('visit_node').innerHTML = String(e);
+    document.getElementById('visit_array').innerHTML = '[' + String(visit.slice().reverse()) + ']';
+    document.getElementById('visiting_node').innerHTML = String(visit[visit.length - 1]);
+    // document.getElementById('visited_array').innerHTML = '[' + String(visited) + ']';
+    // console.log(visit);
+}
+
+setInterval(refresh, 30);
 
 canv.addEventListener('contextmenu', function(e) {
     //console.log("contextmenu");
     var v = node(e.offsetX, e.offsetY);
     if (v != -1) {
+        vclear();
         exist[v] = false;
     }
 });
@@ -138,13 +144,10 @@ function clear() {
 }
 
 function vclear() {
+    e = undefined;
     visit = [];
-    prev = null;
-    prevprev = null;
     visited = [];
     visited_edge = [];
-    visiting = null;
-    visiting_edge = [];
     console.log("clear");
 }
 
@@ -153,13 +156,9 @@ function cclear() {
     nodes = [];
     edges = [];
     exist = [];
-    visited = [];
-    visited_edge = [];
-    visiting = null;
-    visiting_edge = [];
     n = 0;
     maxb = 1;
-    console.log("clear");
+    vclear();
 }
 
 function drawField() {
@@ -170,6 +169,7 @@ function drawField() {
                 if (exist[edges[i][j]] && i < edges[i][j]) {
                     ctx.lineWidth = edgeD;
                     ctx.strokeStyle = 'gray';
+                    /*
                     if (visiting_edge[0] == i && visiting_edge[1] == edges[i][j]) {
                         ctx.strokeStyle = 'orange';
                     }
@@ -180,6 +180,7 @@ function drawField() {
                             break;
                         }
                     }
+                    */
                     ctx.beginPath();
                     ctx.moveTo(nodes[i][0], nodes[i][1]);
                     ctx.lineTo(nodes[edges[i][j]][0], nodes[edges[i][j]][1]);
@@ -191,8 +192,10 @@ function drawField() {
     for (var i = 0; i < n; ++i) {
         if (exist[i]) {
             ctx.fillStyle = '#97d23d';
-            if (visiting == i) {
-                ctx.fillStyle = 'orange';
+            for (var k = 0; k < visit.length; k++) {
+                if (visit[k] == i) {
+                    ctx.fillStyle = 'orange';
+                }
             }
             for (var k = 0; k < visited.length; k++) {
                 if (visited[k] == i) {
@@ -202,6 +205,12 @@ function drawField() {
             }
             if (i == last) {
                 ctx.fillStyle = 'gray';
+            }
+            if (i == visit[visit.length - 1]) {
+                ctx.fillStyle = 'yellow';
+            }
+            if (i == e) {
+                ctx.fillStyle = 'cyan';
             }
             ctx.beginPath();
             ctx.arc(nodes[i][0], nodes[i][1], nodeR * (1 + (i == last)), 0, Math.PI * 2);

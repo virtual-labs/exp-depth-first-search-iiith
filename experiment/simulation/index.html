@@ -56,16 +56,25 @@
                     <div class="v-datalist-title">Controls</div>
                     <div id="controlls" class="v-datalist-row">
                         <div style="margin:5px 0px">
-                            <label id="svl">Start Vertex: </label><input id="sv" type="number" value=0 min=0 style="width:50px;"/>
+                            <label id="sv">Start Vertex: </label><input id="svi" type="number" value=0 min=0 style="width:50px;"/>
                         </div>
                         <div style="margin:5px 0px">
-                            <button class="button" onclick="vclear(); visit.push(Number(document.getElementById('sv').value)); DFS();">Start DFS</button>
+                            <button class="button" onclick="vclear(); visit.push(Number(document.getElementById('svi').value)); DFS();">Start DFS</button>
                             <button class="button" onclick="DFS();">Next</button>
                         </div>
                         <div style="margin:5px 0px">
-                            <button class="button" onclick="tforce();">Toggle Forces</button>
-                            <button class="button" onclick="cclear();">Clear</button>
+                            <button id="tf" class="button" onclick="tforce();" disabled=true>Toggle Forces</button>
+                            <button id="cc" class="button" onclick="cclear();" disabled=true>Clear</button>
                             <button class="button" onclick="vclear();">Clear Visited</button>
+                        </div>
+                        <div style="margin:5px 0px 5px 15px; text-align: left;">
+                            <input id="tt" type="checkbox" onclick="toggle_tree(this.checked);">  Enable Freehand</input>
+                            <div style="margin:5px 0px">
+                                <label>| </label><label id="bf">Branching Factor: </label><input id="bfi" type="number" value=2 min=0 max=3 style="width:50px;" onclick="preset();"/>
+                            </div>
+                            <div style="margin:5px 0px">
+                                <label>| </label><label id="td">Tree Depth: </label><input id="tdi" type="number" value=3 min=0 max=5 style="width:50px;" onclick="preset();"/>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -87,6 +96,9 @@
                         </div>
                         <div style="margin:5px 0px">
                             <label><span style="background-color:yellow;">&nbsp;&nbsp;</span>&nbsp;To Visit:&nbsp;</label><span id="visiting_node"></span>
+                        </div>
+                        <div style="margin:5px 0px">
+                            <label><span style="background-color:black;">&nbsp;&nbsp;</span>&nbsp;Visited:&nbsp;</label><span id="visited_array"></span>
                         </div>
                     </div>
                 </div>

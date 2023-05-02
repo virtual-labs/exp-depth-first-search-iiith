@@ -19,37 +19,78 @@ var visited_edge = [];
 
 var n = 0;
 
+var ttcheck = false;
+
 document.oncontextmenu = false;
 canv.width = canv.offsetWidth;
 canv.height = canv.offsetHeight;
 ctx.font = "20px Arial";
 
-function valid_input() {
-    var inp = document.getElementById("sv");
+function valid_input(l, inp) {
     if(inp.value == "") {
         return;
     } else if(inp.value > Number(inp.max) || inp.value < Number(inp.min) || parseFloat(inp.value) % 1 != 0 || !exist[Number(inp.value)]) {
-        document.getElementById('svl').style.color = "red";
+        l.style.color = "red";
     } else {
-        document.getElementById('svl').style.color = "black";
+        l.style.color = "";
     }
+}
+
+function toggle_tree(bool) {
+    ttcheck = bool;
+    if (bool) {
+        document.getElementById("bf").style.fontStyle = "italic";
+        document.getElementById("td").style.fontStyle = "italic";
+        document.getElementById("bf").style.color = "grey";
+        document.getElementById("td").style.color = "grey";
+        document.getElementById("bfi").style.color = "grey";
+        document.getElementById("tdi").style.color = "grey";
+        document.getElementById("tf").style.color = "";
+        document.getElementById("cc").style.color = "";
+    } else {
+        document.getElementById("bf").style.fontStyle = "";
+        document.getElementById("td").style.fontStyle = "";
+        document.getElementById("bf").style.color = "";
+        document.getElementById("td").style.color = "";
+        document.getElementById("bfi").style.color = "";
+        document.getElementById("tdi").style.color = "";
+        document.getElementById("tf").style.color = "grey";
+        document.getElementById("cc").style.color = "grey";
+        preset();
+    }
+    document.getElementById("bfi").disabled = bool;
+    document.getElementById("tdi").disabled = bool;
+    document.getElementById("tf").disabled = !bool;
+    document.getElementById("cc").disabled = !bool;
 }
 
 function refresh() {
     canv.width = canv.offsetWidth;
     canv.height = canv.offsetHeight;
+
     if (type) {
         force();
     }
     drawField();
-    var inp = document.getElementById("sv");
+
+    var inp = document.getElementById("svi");
     inp.max = exist.length-1;
-    valid_input();
+    valid_input(document.getElementById("sv"), inp);
+    valid_input(document.getElementById("bf"), document.getElementById("bfi"));
+    valid_input(document.getElementById("td"), document.getElementById("tdi"));
+    
+    if (ttcheck) {
+        document.getElementById("bf").style.color = "gray";
+        document.getElementById("td").style.color = "gray";
+    } else {
+        document.getElementById("bf").style.color = "";
+        document.getElementById("td").style.color = "";
+    }
 
     document.getElementById('visit_node').innerHTML = String(e);
     document.getElementById('visit_array').innerHTML = '[' + String(visit.slice().reverse()) + ']';
     document.getElementById('visiting_node').innerHTML = String(visit[visit.length - 1]);
-    // document.getElementById('visited_array').innerHTML = '[' + String(visited) + ']';
+    document.getElementById('visited_array').innerHTML = '[' + String(visited.slice(0, visited.length-1)) + ']';
     // console.log(visit);
 }
 
@@ -65,53 +106,59 @@ canv.addEventListener('contextmenu', function(e) {
 });
 
 canv.addEventListener('click', function(e) {
-    //console.log("click");
-    if (cur != -1) {
-        return;
-    }
-    var
-        x = e.offsetX;
-        y = e.offsetY;
-        v = node(x, y);
-    if (v == -1) {
-        n++;
-        nodes.push([x, y]);
-        edges.push([]);
-        exist.push(true);
-        if (exist[last] && last != -1) {
-            if (edges[last].indexOf(n - 1))
-            edges[last].push(n - 1);
-            edges[n - 1].push(last);
-            last = -1;
+    if (ttcheck) {
+        //console.log("click");
+        if (cur != -1) {
+            return;
         }
-    } else {
-        if (!exist[last] || last == -1) {
-            last = v;
-        } else {
-            if (edges[last].indexOf(v) == -1) {
-                edges[last].push(v);
-                edges[v].push(last);
-            } else {
-                edges[last].splice(edges[last].indexOf(v), 1);
-                edges[v].splice(edges[v].indexOf(last), 1);
+        var
+            x = e.offsetX;
+            y = e.offsetY;
+            v = node(x, y);
+        if (v == -1) {
+            n++;
+            nodes.push([x, y]);
+            edges.push([]);
+            exist.push(true);
+            if (exist[last] && last != -1) {
+                if (edges[last].indexOf(n - 1))
+                edges[last].push(n - 1);
+                edges[n - 1].push(last);
+                last = -1;
             }
-            last = -1;
+        } else {
+            if (!exist[last] || last == -1) {
+                last = v;
+            } else {
+                if (edges[last].indexOf(v) == -1) {
+                    edges[last].push(v);
+                    edges[v].push(last);
+                } else {
+                    edges[last].splice(edges[last].indexOf(v), 1);
+                    edges[v].splice(edges[v].indexOf(last), 1);
+                }
+                last = -1;
+            }
         }
+        //console.log(nodes, edges, exist);
     }
-    //console.log(nodes, edges, exist);
 });
 
 canv.addEventListener('mousedown', function(e) {
-    //console.log("mousedown");
-    var v = node(e.offsetX,  e.offsetY);
-    if (v != -1) {
-        cur = v;
+    if (ttcheck) {
+        //console.log("mousedown");
+        var v = node(e.offsetX,  e.offsetY);
+        if (v != -1) {
+            cur = v;
+        }
     }
 });
 
 canv.addEventListener('mouseup', function(e) {
-    //console.log("mouseup");
-    cur = -1;
+    if (ttcheck) {
+        //console.log("mouseup");
+        cur = -1;
+    }
 });
 
 canv.addEventListener('mousemove', function(e) {
@@ -133,8 +180,10 @@ document.addEventListener('keydown', function(e) {
 });
 
 function tforce() {
-    type = !type;
-    console.log('force: ', type);
+    if (ttcheck) {
+        type = !type;
+        console.log('force: ', type);
+    }
 }
 
 function clear() {
@@ -152,13 +201,15 @@ function vclear() {
 }
 
 function cclear() {
-    clear();
-    nodes = [];
-    edges = [];
-    exist = [];
-    n = 0;
-    maxb = 1;
-    vclear();
+    if (ttcheck) {
+        clear();
+        nodes = [];
+        edges = [];
+        exist = [];
+        n = 0;
+        maxb = 1;
+        vclear();
+    }
 }
 
 function drawField() {

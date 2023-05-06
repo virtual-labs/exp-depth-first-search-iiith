@@ -36,7 +36,8 @@ function preset() {
 } preset();
 
 var visit = [];
-var visit_p = [undefined];
+var visit_p = [];
+var visit_gp = [undefined, undefined];
 var e;
 var c;
 var ep;
@@ -54,10 +55,24 @@ function DFS_Restart() {
     nuxtdis = false;
     // clearInterval(refreshIntervalId);
     visited.push(e);
-
 }
 
 function DFS() {
+    console.log(visit);
+    console.log(visit_p);
+    if (noEdges) {
+        visited.push(e);
+        trav_circle(e, ep);
+        c = ep;
+        e = ep;
+        ep = visit_p[visit_p.length-1];
+        for (const next of edges[e].slice().reverse()) {
+            if (!visited.includes(next) && !exist.includes(next)) {
+                noEdges = false;
+            }
+        }
+        return;
+    }
     started=true;
     e = visit.pop();
     if (e == undefined) {
@@ -71,7 +86,7 @@ function DFS() {
     trav_circle(ep, e);  
     noEdges = true;  
     for (const next of edges[e].slice().reverse()) {
-        if (!visited.includes(next) && !visit.includes(next) && !exist.includes(next)) {
+        if (!visited.includes(next) && !visit.includes(next) && exist[next]) {
             noEdges = false;  
             visit.push(next);
             visit_p.push(e);

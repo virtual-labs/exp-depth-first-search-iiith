@@ -34,6 +34,8 @@ function valid_input(l, inp) {
     }
 }
 
+var oneshotAuto = true;
+
 function refresh() {
     canv.width = canv.offsetWidth;
     canv.height = canv.offsetHeight;
@@ -59,6 +61,10 @@ function refresh() {
     document.getElementById('visiting_node').innerHTML = String(visit[visit.length - 1]);
     document.getElementById('visited_array').innerHTML = '[' + String(visited.slice(0, visited.length-1)) + ']';
     // console.log(visit);
+    
+    if (oneshotAuto) {
+        autoPlay();
+    }
 }
 
 setInterval(refresh, 30);
@@ -152,10 +158,16 @@ function clear() {
 }
 
 function vclear() {
+    c = undefined;
     e = undefined;
+    ep = undefined;
     visit = [];
+    visit_p = [];
     visited = [];
     visited_edge = [];
+    started = false;
+    noEdges = false;
+    oneshotAuto = true;
     console.log("clear");
 }
 
@@ -176,6 +188,9 @@ function drawField() {
             for (var j = 0; j < edges[i].length; ++j) {
                 if (exist[edges[i][j]] && i < edges[i][j]) {
                     ctx.lineWidth = edgeD;
+                    if (i == c) {
+                        ctx.lineWidth = edgeD*2;                   
+                    }
                     ctx.strokeStyle = 'gray';
                     /*
                     if (visiting_edge[0] == i && visiting_edge[1] == edges[i][j]) {
@@ -217,16 +232,31 @@ function drawField() {
             if (i == visit[visit.length - 1]) {
                 ctx.fillStyle = 'yellow';
             }
-            if (i == e) {
+            if (i == c && !visited.slice(0, visited.length - 1).includes(c)) {
                 ctx.fillStyle = 'cyan';
             }
             ctx.beginPath();
             ctx.arc(nodes[i][0], nodes[i][1], nodeR * (1 + (i == last)), 0, Math.PI * 2);
             ctx.fill();
             ctx.fillStyle = 'gray';
+            for (var k = 0; k < visited.length -1; k++) {
+                if (visited[k] == i) {
+                    ctx.fillStyle = 'white';
+                    break;
+                }
+            }
+            if (e == undefined && started) {
+                ctx.fillStyle = 'white';            
+            }
             ctx.fillText(i,nodes[i][0] - nodeR/4 - (nodeR/4*(i >= 10)),nodes[i][1] + nodeR/4);
 
-            ctx.strokeStyle = 'gray';
+            if (i == c) {
+                ctx.strokeStyle = 'black';
+                ctx.lineWidth = edgeD*2;                    
+            } else {
+                ctx.strokeStyle = 'gray';
+                ctx.lineWidth = edgeD;                    
+            }
             ctx.beginPath();
             ctx.arc(nodes[i][0], nodes[i][1], nodeR * 2, 0, Math.PI * 2);
             ctx.stroke();

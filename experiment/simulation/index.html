@@ -60,7 +60,10 @@
                         </div>
                         <div style="margin:5px 0px">
                             <button class="button" onclick="vclear(); visit.push(Number(document.getElementById('svi').value)); DFS();">Start DFS</button>
-                            <button class="button" onclick="DFS();">Next</button>
+                            <button id="nuxt" class="button" onclick="started=true;DFS();">Next</button>
+                        </div>
+                        <div style="margin:5px 0px">
+                            <input id="auto" type=checkbox>&nbsp;&nbsp;AutoPlay</button>
                         </div>
                         <div style="margin:5px 0px">
                             <button id="tf" class="button" onclick="tforce();">Toggle Forces</button>

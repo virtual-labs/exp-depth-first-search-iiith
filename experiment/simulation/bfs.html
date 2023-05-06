@@ -20,12 +20,12 @@
                 <div class="column">
                     <div class="v-tabs">
                         <ul>
-                            <li id="Task1"  onclick="vclear;window.location.href = 'index.html';">
+                            <li class="is-active" id="Task1">
                                 <a>
                                     Depth First Search
                                 </a>
                             </li>
-                            <li class="is-active" id="Task2">
+                            <li id="Task2" onclick="window.location.href = 'bfs.html';">
                                 <a>
                                     Breadth First Search
                                 </a>
@@ -56,16 +56,28 @@
                     <div class="v-datalist-title">Controls</div>
                     <div id="controlls" class="v-datalist-row">
                         <div style="margin:5px 0px">
-                            <label>Start Vertex: </label><input id="sv" type="number" min=0 max=1 step=1 style="width:50px;" onkeyup="valid_input();"/>
+                            <label id="sv">Start Vertex: </label><input id="svi" type="number" value=0 min=0 style="width:50px;"/>
                         </div>
                         <div style="margin:5px 0px">
-                            <button class="button" onclick="visit.push(Number(document.getElementById('sv').value)); BFS();">Start BFS</button>
+                            <button class="button" onclick="vclear(); visit.push(Number(document.getElementById('svi').value)); BFS();">Start BFS</button>
                             <button class="button" onclick="BFS();">Next</button>
                         </div>
                         <div style="margin:5px 0px">
-                            <button class="button" onclick="tforce();">Toggle Forces</button>
-                            <button class="button" onclick="cclear();">Clear</button>
+                            <button id="tf" class="button" onclick="tforce();">Toggle Forces</button>
+                            <button id="cc" class="button" onclick="cclear();">Clear</button>
                             <button class="button" onclick="vclear();">Clear Visited</button>
+                        </div>
+                        <div style="margin:5px 0px 5px 15px; text-align: left;">
+                            <div>
+                                <label style="font-weight: bold; font-size:12px;">Note: Overwrites Graph</label>
+                            </div>
+                            <label>  <u>Tree Controlls:</u> </label>
+                            <div>
+                                <label>&nbsp;&nbsp;| </label><label id="bf">Branching Factor: </label><input id="bfi" type="number" value=2 min=0 max=3 style="width:50px;" onclick="preset();"/>
+                            </div>
+                            <div style="margin:5px 0px">
+                                <label>&nbsp;&nbsp;| </label><label id="td">Tree Depth: </label><input id="tdi" type="number" value=3 min=0 max=5 style="width:50px;" onclick="preset();"/>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -76,9 +88,21 @@
             </div>
 
             <div class="column is-2-desktop is-12-tablet is-12-mobile">
-                <div class="v-datalist-container">
+                <div class="v-datalist-container" style="padding-left: 5px;">
                     <div class="v-datalist-title">Information</div>
-                    <div id="info" class="v-datalist-row">
+                    <div id="info" class="v-datalist-row" style="text-align:left;">
+                        <div style="margin:5px 0px">
+                            <label><span style="background-color:cyan;">&nbsp;&nbsp;</span>&nbsp;Visiting:&nbsp;</label><span id="visit_node"></span>
+                        </div>
+                        <div style="margin:5px 0px">
+                            <label><span style="background-color:orange;">&nbsp;&nbsp;</span>&nbsp;Frontier:&nbsp;</label><span id="visit_array"></span>
+                        </div>
+                        <div style="margin:5px 0px">
+                            <label><span style="background-color:yellow;">&nbsp;&nbsp;</span>&nbsp;To Visit:&nbsp;</label><span id="visiting_node"></span>
+                        </div>
+                        <div style="margin:5px 0px">
+                            <label><span style="background-color:black;">&nbsp;&nbsp;</span>&nbsp;Visited:&nbsp;</label><span id="visited_array"></span>
+                        </div>
                     </div>
                 </div>
             </div>

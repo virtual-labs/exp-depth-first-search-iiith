@@ -63,17 +63,20 @@
                             <button class="button" onclick="DFS();">Next</button>
                         </div>
                         <div style="margin:5px 0px">
-                            <button id="tf" class="button" onclick="tforce();" disabled=true>Toggle Forces</button>
-                            <button id="cc" class="button" onclick="cclear();" disabled=true>Clear</button>
+                            <button id="tf" class="button" onclick="tforce();">Toggle Forces</button>
+                            <button id="cc" class="button" onclick="cclear();">Clear</button>
                             <button class="button" onclick="vclear();">Clear Visited</button>
                         </div>
                         <div style="margin:5px 0px 5px 15px; text-align: left;">
-                            <input id="tt" type="checkbox" onclick="toggle_tree(this.checked);">  Enable Freehand</input>
-                            <div style="margin:5px 0px">
-                                <label>| </label><label id="bf">Branching Factor: </label><input id="bfi" type="number" value=2 min=0 max=3 style="width:50px;" onclick="preset();"/>
+                            <div>
+                                <label style="font-weight: bold; font-size:12px;">Note: Overwrites Graph</label>
+                            </div>
+                            <label>  <u>Tree Controlls:</u> </label>
+                            <div>
+                                <label>&nbsp;&nbsp;| </label><label id="bf">Branching Factor: </label><input id="bfi" type="number" value=2 min=0 max=3 style="width:50px;" onclick="preset();"/>
                             </div>
                             <div style="margin:5px 0px">
-                                <label>| </label><label id="td">Tree Depth: </label><input id="tdi" type="number" value=3 min=0 max=5 style="width:50px;" onclick="preset();"/>
+                                <label>&nbsp;&nbsp;| </label><label id="td">Tree Depth: </label><input id="tdi" type="number" value=3 min=0 max=5 style="width:50px;" onclick="preset();"/>
                             </div>
                         </div>
                     </div>

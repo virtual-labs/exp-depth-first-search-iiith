@@ -12,6 +12,7 @@ var maxb = 1;
 
 var edges = [];
 var nodes = [];
+var parent = [];
 var exist = [];
 
 var visited = [];
@@ -162,7 +163,7 @@ function vclear() {
     e = undefined;
     ep = undefined;
     visit = [];
-    visit_p = [];
+    parent = [];
     visited = [];
     visited_edge = [];
     started = false;

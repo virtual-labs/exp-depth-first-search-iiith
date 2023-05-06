@@ -32,12 +32,11 @@ function preset() {
     // edges.push([1, 2], [0, 3, 4], [0, 5, 6], [1], [1], [2], [2]);
     for (n = 1; n <= nodes.length; n++) { 
         exist.push(true);
+        parent.push(null);
     }
 } preset();
 
 var visit = [];
-var visit_p = [];
-var visit_gp = [undefined, undefined];
 var e;
 var c;
 var ep;
@@ -58,14 +57,11 @@ function DFS_Restart() {
 }
 
 function DFS() {
-    console.log(visit);
-    console.log(visit_p);
     if (noEdges) {
         visited.push(e);
-        trav_circle(e, ep);
-        c = ep;
-        e = ep;
-        ep = visit_p[visit_p.length-1];
+        trav_circle(e, parent[e]);
+        c = parent[e];
+        e = parent[e];
         for (const next of edges[e].slice().reverse()) {
             if (!visited.includes(next) && !exist.includes(next)) {
                 noEdges = false;
@@ -80,16 +76,14 @@ function DFS() {
         return;
     }
     c = e;
-    ep = visit_p.pop();
-    visited.push(e);
-    refresh();
-    trav_circle(ep, e);  
+    if (!noEdges) visited.push(e);
+    trav_circle(parent[e], e);  
     noEdges = true;  
     for (const next of edges[e].slice().reverse()) {
         if (!visited.includes(next) && !visit.includes(next) && exist[next]) {
             noEdges = false;  
             visit.push(next);
-            visit_p.push(e);
+            parent[next] = e;
         }
     }
 }

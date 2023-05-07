@@ -17,11 +17,11 @@ function preset() {
     vclear();
     type = false;
     for (i = 1; i <= trd; i++) {
-        for (j = 1; j < Math.pow(2, i); j = j+2) {
-            nodes.push([(j/Math.pow(2, i))*cwidth, (i/(trd+1))*cheight]);
+        for (j = 1; j < Math.pow(brf, i); j = j+(1*((brf+1) % 2) + 1)) {
+            nodes.push([(j/Math.pow(brf, i))*cwidth, (i/(trd+1))*cheight]);
             if (nodes.length-1 == 0) {
                 edges.push([((2*nodes.length)-1), (2*nodes.length)]);
-            } else if (nodes.length-1 >= Math.pow(2, trd-1) - 1) {
+            } else if (nodes.length-1 >= Math.pow(brf, trd-1) - 1) {
                 edges.push([Math.floor((nodes.length-2)/2)]);
             } else {
                 edges.push([Math.floor((nodes.length-2)/2), ((2*nodes.length)-1), (2*nodes.length)]);
@@ -39,25 +39,29 @@ function preset() {
 var visit = [];
 var e;
 var c;
-var ep;
 var started = false;
 var noEdges = false;
 
 var nuxtdis = false;
 var refreshIntervalId = null;
 
-function DFS_Restart() {
+function DFS_STOP() {
+    console.log("DFS_STOP");
     started = false;
     noEdges = false;
+    e = undefined;
     c = undefined;
     document.getElementById("nuxt").disabled = false;
     nuxtdis = false;
-    // clearInterval(refreshIntervalId);
-    visited.push(e);
+    clearInterval(refreshIntervalId);
 }
 
 function DFS() {
     if (noEdges) {
+        if (e == SN) {
+            DFS_STOP();
+            return;
+        }
         visited.push(e);
         trav_circle(e, parent[e]);
         c = parent[e];
@@ -71,10 +75,6 @@ function DFS() {
     }
     started=true;
     e = visit.pop();
-    if (e == undefined) {
-        DFS_Restart();
-        return;
-    }
     c = e;
     if (!noEdges) visited.push(e);
     trav_circle(parent[e], e);  
@@ -89,14 +89,6 @@ function DFS() {
 }
 
 function autoPlay() {
-    if (document.getElementById('auto').checked && started) {
-        oneshotAuto = false;
-        nuxtdis = true;
-        document.getElementById('nuxt').disabled = true;
-        refreshIntervalId = setInterval(DFS, 1000);
-    } else {
-        document.getElementById('nuxt').disabled = false;
-    }
 }
 
 function BFS() {
@@ -150,7 +142,7 @@ function _trav_circle(params) {
 }
 
 function trav_circle(e, m) {
-  if (e == undefined) return;
+  if (e == undefined || m == undefined) return;
   document.getElementById("nuxt").disabled = true;
   _trav_circle({
     frame: 0,

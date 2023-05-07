@@ -4,6 +4,8 @@ const INF = 1E9;
 
 var canv = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
+const input = document.getElementById('autor');
+
 var cur = -1;
 var last = -1;
 var type = true;
@@ -19,6 +21,7 @@ var visited = [];
 var visited_edge = [];
 
 var n = 0;
+var SN = 0;
 
 document.oncontextmenu = false;
 canv.width = canv.offsetWidth;
@@ -60,15 +63,36 @@ function refresh() {
     document.getElementById('visit_node').innerHTML = String(e);
     document.getElementById('visit_array').innerHTML = '[' + String(visit.slice().reverse()) + ']';
     document.getElementById('visiting_node').innerHTML = String(visit[visit.length - 1]);
-    document.getElementById('visited_array').innerHTML = '[' + String(visited.slice(0, visited.length-1)) + ']';
+    // document.getElementById('visited_array').innerHTML = '[' + String(visited.slice(0, visited.length-1)) + ']';
     // console.log(visit);
     
-    if (oneshotAuto) {
-        autoPlay();
+    if (document.getElementById('auto').checked) {
+        if (started) {
+            nuxtdis = true;
+            document.getElementById('nuxt').disabled = true;
+            if (oneshotAuto) {
+                oneshotAuto = false;
+                refreshIntervalId = setInterval(DFS, 1000*input.value);
+            }
+        } else {
+            document.getElementById('nuxt').disabled = false;
+        }
+    } else if (refreshIntervalId != null) {
+        clearInterval(refreshIntervalId);
+        nuxtdis = false;
+        document.getElementById('nuxt').disabled = false;
+        oneshotAuto = true;
     }
 }
 
 setInterval(refresh, 30);
+
+input.addEventListener("input", (event) => {
+    if (refreshIntervalId != null) {
+        clearInterval(refreshIntervalId);
+        refreshIntervalId = setInterval(DFS, 1000*event.target.value);
+    }
+})
 
 canv.addEventListener('contextmenu', function(e) {
     //console.log("contextmenu");

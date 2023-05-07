@@ -59,11 +59,12 @@
                             <label id="sv">Start Vertex: </label><input id="svi" type="number" value=0 min=0 style="width:50px;"/>
                         </div>
                         <div style="margin:5px 0px">
-                            <button class="button" onclick="vclear(); started=true; visit.push(Number(document.getElementById('svi').value)); parent[visit[0]] = undefined; DFS();">Start DFS</button>
+                            <button class="button" onclick="vclear(); SN = Number(document.getElementById('svi').value); visit.push(SN); parent[visit[0]] = undefined; DFS();">Start DFS</button>
                             <button id="nuxt" class="button" onclick="DFS();">Next</button>
                         </div>
                         <div style="margin:5px 0px">
                             <input id="auto" type=checkbox>&nbsp;&nbsp;AutoPlay</button>
+                            <input id="autor" type="range" min="0.1" max="2" value="1" class="slider" id="myRange">
                         </div>
                         <div style="margin:5px 0px">
                             <button id="tf" class="button" onclick="tforce();">Toggle Forces</button>
@@ -103,9 +104,9 @@
                         <div style="margin:5px 0px">
                             <label><span style="background-color:yellow;">&nbsp;&nbsp;</span>&nbsp;To Visit:&nbsp;</label><span id="visiting_node"></span>
                         </div>
-                        <div style="margin:5px 0px">
+                        <!--div style="margin:5px 0px">
                             <label><span style="background-color:black;">&nbsp;&nbsp;</span>&nbsp;Visited:&nbsp;</label><span id="visited_array"></span>
-                        </div>
+                        </div-->
                     </div>
                 </div>
             </div>

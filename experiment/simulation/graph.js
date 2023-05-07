@@ -87,10 +87,11 @@ function refresh() {
 
 setInterval(refresh, 30);
 
-input.addEventListener("input", (event) => {
+input.addEventListener("input", (e) => {
     if (refreshIntervalId != null) {
+        console.log(refreshIntervalId, e.target.value);
         clearInterval(refreshIntervalId);
-        refreshIntervalId = setInterval(DFS, 1000*event.target.value);
+        refreshIntervalId = setInterval(DFS, 1000*e.target.value);
     }
 })
 

@@ -87,14 +87,6 @@ function refresh() {
 
 setInterval(refresh, 30);
 
-input.addEventListener("input", (e) => {
-    if (refreshIntervalId != null) {
-        console.log(refreshIntervalId, e.target.value);
-        clearInterval(refreshIntervalId);
-        refreshIntervalId = setInterval(DFS, 1000*e.target.value);
-    }
-})
-
 canv.addEventListener('contextmenu', function(e) {
     //console.log("contextmenu");
     var v = node(e.offsetX, e.offsetY);

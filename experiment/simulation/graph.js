@@ -60,9 +60,9 @@ function refresh() {
     document.getElementById("bf").style.color = "";
     document.getElementById("td").style.color = "";
 
-    document.getElementById('visit_node').innerHTML = String(e);
+    // document.getElementById('visit_node').innerHTML = String(e);
     document.getElementById('visit_array').innerHTML = '[' + String(visit.slice().reverse()) + ']';
-    document.getElementById('visiting_node').innerHTML = String(visit[visit.length - 1]);
+    // document.getElementById('visiting_node').innerHTML = String(visit[visit.length - 1]);
     // document.getElementById('visited_array').innerHTML = '[' + String(visited.slice(0, visited.length-1)) + ']';
     // console.log(visit);
     
@@ -206,9 +206,11 @@ function drawField() {
             for (var j = 0; j < edges[i].length; ++j) {
                 if (exist[edges[i][j]] && i < edges[i][j]) {
                     ctx.lineWidth = edgeD;
+					/*
                     if (i == c) {
                         ctx.lineWidth = edgeD*2;                   
                     }
+                    */
                     ctx.strokeStyle = 'gray';
                     /*
                     if (visiting_edge[0] == i && visiting_edge[1] == edges[i][j]) {
@@ -233,25 +235,27 @@ function drawField() {
     for (var i = 0; i < n; ++i) {
         if (exist[i]) {
             ctx.fillStyle = '#97d23d';
-            for (var k = 0; k < visit.length; k++) {
-                if (visit[k] == i) {
-                    ctx.fillStyle = 'orange';
-                }
-            }
-            for (var k = 0; k < visited.length; k++) {
+            for (var k = 0; k < visited.length -1; k++) {
                 if (visited[k] == i) {
                     ctx.fillStyle = 'black';
                     break;
                 }
             }
+            for (var k = 0; k < visit.length; k++) {
+                if (visit[k] == i) {
+                    ctx.fillStyle = 'orange';
+                }
+            }
             if (i == last) {
                 ctx.fillStyle = 'gray';
             }
+			/* 
             if (i == visit[visit.length - 1]) {
                 ctx.fillStyle = 'yellow';
             }
+            */
             if (i == c && !visited.slice(0, visited.length - 1).includes(c)) {
-                ctx.fillStyle = 'cyan';
+                ctx.fillStyle = 'orange';
             }
             ctx.beginPath();
             ctx.arc(nodes[i][0], nodes[i][1], nodeR * (1 + (i == last)), 0, Math.PI * 2);

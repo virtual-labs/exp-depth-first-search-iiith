@@ -12,7 +12,7 @@ function preset() {
     nodes = [];
     edges = [];
     exist = [];
-    n = 0;
+    n = Math.pow(brf, trd);
     maxb = 1;
     vclear();
     type = false;

@@ -106,7 +106,6 @@ canv.addEventListener('click', function(e) {
         y = e.offsetY;
         v = node(x, y);
     if (v == -1) {
-        n++;
         nodes.push([x, y]);
         edges.push([]);
         exist.push(true);
@@ -116,6 +115,7 @@ canv.addEventListener('click', function(e) {
             edges[n - 1].push(last);
             last = -1;
         }
+		n++;
     } else {
         if (!exist[last] || last == -1) {
             last = v;

@@ -52,12 +52,12 @@ function refresh() {
     var inp = document.getElementById("svi");
     inp.max = exist.length-1;
     valid_input(document.getElementById("sv"), inp);
-    valid_input(document.getElementById("bf"), document.getElementById("bfi"));
+    //valid_input(document.getElementById("bf"), document.getElementById("bfi"));
     valid_input(document.getElementById("td"), document.getElementById("tdi"));
     
-    document.getElementById("bf").style.color = "gray";
+    //document.getElementById("bf").style.color = "gray";
     document.getElementById("td").style.color = "gray";
-    document.getElementById("bf").style.color = "";
+    //document.getElementById("bf").style.color = "";
     document.getElementById("td").style.color = "";
 
     // document.getElementById('visit_node').innerHTML = String(e);

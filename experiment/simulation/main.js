@@ -7,21 +7,21 @@ function preset() {
     cwidth = canv.offsetWidth;
     cheight = canv.offsetHeight;
     var trd = Number(document.getElementById("tdi").value);
-    var brf = Number(document.getElementById("bfi").value);
+    //var brf = Number(document.getElementById("bfi").value);
     clear();
     nodes = [];
     edges = [];
     exist = [];
-    n = Math.pow(brf, trd);
+    n = Math.pow(2, trd);
     maxb = 1;
     vclear();
     type = false;
     for (i = 1; i <= trd; i++) {
-        for (j = 1; j < Math.pow(brf, i); j = j+(1*((brf+1) % 2) + 1)) {
-            nodes.push([(j/Math.pow(brf, i))*cwidth, (i/(trd+1))*cheight]);
+        for (j = 1; j < Math.pow(2, i); j = j+2) {              //(1*((brf+1) % 2) + 1)) {
+            nodes.push([(j/Math.pow(2, i))*cwidth, (i/(trd+1))*cheight]);
             if (nodes.length-1 == 0) {
                 edges.push([((2*nodes.length)-1), (2*nodes.length)]);
-            } else if (nodes.length-1 >= Math.pow(brf, trd-1) - 1) {
+            } else if (nodes.length-1 >= Math.pow(2, trd-1) - 1) {
                 edges.push([Math.floor((nodes.length-2)/2)]);
             } else {
                 edges.push([Math.floor((nodes.length-2)/2), ((2*nodes.length)-1), (2*nodes.length)]);

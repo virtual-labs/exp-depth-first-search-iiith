@@ -35,14 +35,14 @@ function DFS() {
         trav_circle(e, parent[e]);
         c = parent[e];
         e = parent[e];
-        for (const next of edges[e].slice().reverse()) {
+        for (const next of edges[e].slice()) {
             if (!visited.includes(next) && !exist.includes(next)) {
                 noEdges = false;
             }
         }
         return;
     }
-    e = visit.pop();
+    e = visit.shift();
     c = e;
     if (!noEdges) visited.push(e);
     trav_circle(parent[e], e);  
@@ -55,7 +55,7 @@ function DFS() {
     for (const next of edges[e].slice().reverse()) {
         if (!visited.includes(next) && !visit.includes(next) && exist[next]) {
             noEdges = false;  
-            visit.push(next);
+            visit.unshift(next);
             parent[next] = e;
         }
     }

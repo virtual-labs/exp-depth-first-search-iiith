@@ -10,7 +10,8 @@ var noEdges = false;
 var nuxtdis = false;
 var refreshIntervalId = null;
 
-var NoQuestion = true
+var NoQuestion = false;
+var chance = 0.5;
 
 function ALG_STOP() {
     console.log("ALG_STOP");
@@ -46,10 +47,13 @@ function DFS() {
     c = e;
     if (!noEdges) visited.push(e);
     trav_circle(parent[e], e);  
-	if (!NoQuestion && rand < 0.2) { // chance = 2/10
-		 isQuestion = true;
+	if (!NoQuestion && visit.length != 0) { // chance = 2/10
 		var rand = Math.random();
 		console.log(rand);
+		if (rand < chance) {
+			isQuestion = true;
+			question();
+		}
 	}
     noEdges = true;  
     for (const next of edges[e].slice().reverse()) {
@@ -73,7 +77,7 @@ function BEFS() {
         trav_circle(e, parent[e]);
         c = parent[e];
         e = parent[e];
-        for (const next of edges[e].slice().reverse()) {
+        for (const next of edges[e].slice()) {
             if (!visited.includes(next) && !exist.includes(next)) {
                 noEdges = false;
             }
@@ -85,10 +89,10 @@ function BEFS() {
     c = e;
     if (!noEdges) visited.push(e);
     trav_circle(parent[e], e);  
-	if (!NoQuestion && rand < 0.2) { // chance = 2/10
+	if (!NoQuestion && visit.length != 0) { // chance = 2/10
 		var rand = Math.random();
 		console.log(rand);
-		 isQuestion = true;
+		if (rand < chance) isQuestion = true;
 	}
     noEdges = true;
     for (const next of edges[e].slice()) {

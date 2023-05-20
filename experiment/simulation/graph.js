@@ -1,5 +1,5 @@
-const nodeR = 10;
-const edgeD = 1;
+const nodeR = 12.5;
+const edgeD = 2;
 const INF = 1E9;
 
 var canv = document.getElementById('canvas');
@@ -19,6 +19,8 @@ var exist = [];
 
 var visited = [];
 var visited_edge = [];
+
+var isWeigted = false;
 
 var n = 0;
 var SN = 0;
@@ -88,7 +90,7 @@ canv.addEventListener('mouseup', function(e) {
 });
 
 canv.addEventListener('mousemove', function(e) {
-    //console.log("mousemove");
+    // console.log("mousemove: ", e.offsetX, e.offsetY);
     if (cur != -1) {
         nodes[cur] = [e.offsetX, e.offsetY];
     }
@@ -134,10 +136,49 @@ function cclear() {
     clear();
     nodes = [];
     edges = [];
+    edges_weight = [];
     exist = [];
     n = 0;
     maxb = 1;
     vclear();
+}
+
+function drawLabel(text, p1x, p1y, p2x, p2y, alignment = 'center', padding = 0 ){
+  var dx = p2x - p1x;
+  var dy = p2y - p1y;   
+  var px, py, pad;
+
+
+	var angle = Math.atan2(dy,dx);
+	if (angle < -Math.PI/2 || angle > Math.PI/2){
+		var px = p1x;
+		var py = p1y;
+		p1x = p2x;
+		p1y = p2y;
+		p2x = px;
+		p2y = py;
+		dx *= -1;
+		dy *= -1;
+		angle -= Math.PI;
+	}
+
+  if (alignment=='center'){
+    px = p1x;
+    py = p1y;
+    pad = 1/2;
+  } else {
+    var left = (alignment=='left');
+    px = left ? p1x : p2x;
+    py = left ? p1y : p2y;
+    pad = padding / Math.sqrt(dx*dx+dy*dy) * (left ? 1 : -1);
+  }
+
+  ctx.save();
+  ctx.textAlign = alignment;
+  ctx.translate(px+dx*pad,py+dy*pad);
+  ctx.rotate(Math.atan2(dy,dx));
+  ctx.fillText(text,0,0);
+  ctx.restore();
 }
 
 function drawField() {
@@ -169,6 +210,12 @@ function drawField() {
                     ctx.moveTo(nodes[i][0], nodes[i][1]);
                     ctx.lineTo(nodes[edges[i][j]][0], nodes[edges[i][j]][1]);
                     ctx.stroke();
+
+                    ctx.fillStyle = 'gray';
+					ctx.font  = '16px sans-serif';
+					ctx.textBaseline = 'bottom';
+					if (isWeigted) drawLabel(edges_weight[i][j], nodes[i][0], nodes[i][1], nodes[edges[i][j]][0], nodes[edges[i][j]][1]);
+					ctx.fill();
                 }
             }
         }
@@ -201,14 +248,14 @@ function drawField() {
             ctx.beginPath();
             ctx.arc(nodes[i][0], nodes[i][1], nodeR * (1 + (i == last)), 0, Math.PI * 2);
             ctx.fill();
-            ctx.fillStyle = 'gray';
+            ctx.fillStyle = '#616161';
             for (var k = 0; k < visited.length -1; k++) {
                 if (visited[k] == i) {
                     ctx.fillStyle = 'white';
                     break;
                 }
             }
-            ctx.fillText(i,nodes[i][0] - nodeR/4 - (nodeR/4*(i >= 10)),nodes[i][1] + nodeR/4);
+            ctx.fillText(i,nodes[i][0] - nodeR/3 - (nodeR/3*(i >= 10)), nodes[i][1] + nodeR/1.4);
 
             if (i == c) {
                 ctx.strokeStyle = 'black';

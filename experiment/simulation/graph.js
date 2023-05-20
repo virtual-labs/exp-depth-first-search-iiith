@@ -123,6 +123,7 @@ function vclear() {
     e = undefined;
     ep = undefined;
     visit = [];
+    tmp = [];
     parent = [];
     visited = [];
     visited_edge = [];

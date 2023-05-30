@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="./css/main.css">
     </head>
 
-    <body onload="isWeigted = false" style="padding-left: 150px;padding-right: 150px;padding-top: 20px;">
+    <body onload="isWeigted = true" style="padding-left: 150px;padding-right: 150px;padding-top: 20px;">
         <div class="container">
             <div class="columns is-centered">
                 <div class="column is-one-quarter v-instruction-title">
@@ -20,12 +20,12 @@
                 <div class="column">
                     <div class="v-tabs">
                         <ul>
-                            <li class="is-active" id="Task1">
+                            <li id="Task1" onclick="isDFS = true; window.location.href = 'index.html';">
                                 <a>
                                     Depth First Search
                                 </a>
                             </li>
-                            <li id="Task2" onclick="isDFS = false; window.location.href = 'befs.html';">
+                            <li class="is-active" id="Task2">
                                 <a>
                                     Best First Search
                                 </a>
@@ -43,10 +43,6 @@
                     <div id="instruction-title" class="v-collapsible is-size-5">Instructions</div>
                     <div class="v-content" style="text-align: left; padding-left: 5%; padding-right: 5%;">
                         <ul id="instruc" style="list-style: disc;">
-							<li>Help</li>
-							<li>Help</li>
-							<li>Help</li>
-							<li>Help</li>
                         </ul>
                     </div>
                 </div>
@@ -60,15 +56,16 @@
                     <div class="v-datalist-title">Controls</div>
                     <div id="controlls" class="v-datalist-row">
                         <div style="margin:5px 0px">
-                            <label id="sv">Start Vertex: </label><input id="svi" type="number" value=0 min=0 style="width:50px;"/>
+                            <label id="sv">Start Vertex: </label><input id="svi" type="number" value=0 min=0 style="width:50px;"/><br>
+                            <label id="ev">Goal Vertex: </label><input id="evi" type="number" value=0 min=0 style="width:50px;" onchange="vclear();"/>
                         </div>
                         <div style="margin:5px 0px">
-                            <button class="button" onclick="isDFS = true; vclear(); SN = Number(document.getElementById('svi').value); visit.push(SN); parent[visit[0]] = undefined; DFS();">Start DFS</button>
-                            <button id="nuxt" class="button" onclick="DFS();">Next</button>
+                            <button class="button" onclick="isDFS = false; vclear(); SN = Number(document.getElementById('svi').value); EndVect = document.getElementById('evi').value; visit.push(SN); parent[visit[0]] = undefined; BEFS();">Start BEFS</button>
+                            <button id="nuxt" class="button" onclick="BEFS();">Next</button>
                         </div>
                         <div style="margin:5px 0px">
                             <input id="auto" type=checkbox>&nbsp;&nbsp;AutoPlay</button>
-                            <input id="autor" type="range" min="1" max="2" step="0.1" value="1.5" class="slider" id="myRange" onchange="if (refreshIntervalId != null) {console.log(refreshIntervalId, ); clearInterval(refreshIntervalId);refreshIntervalId = setInterval(DFS, 1000*input.value);}">
+                            <input id="autor" type="range" min="1" max="2" step="0.1" value="1.5" class="slider" id="myRange" onchange="if (refreshIntervalId != null) {console.log(refreshIntervalId, ); clearInterval(refreshIntervalId);refreshIntervalId = setInterval(BEFS, 1000*input.value);}">
                         </div>
                         <div style="margin:5px 0px">
                             <button id="tf" class="button" onclick="tforce();">Toggle Forces</button>
@@ -99,6 +96,9 @@
                 <div class="v-datalist-container" style="padding-left: 5px;">
                     <div class="v-datalist-title">Information</div>
                     <div id="info" class="v-datalist-row" style="text-align:left;">
+                        <div style="margin:5px 0px">
+                            <label><span style="background-color:yellow;">&nbsp;&nbsp;</span>&nbsp;Goal Vector:&nbsp;</label><span id="goal_node"></span>
+                        </div>
                         <div style="margin:5px 0px">
                             <label><span style="background-color:orange;">&nbsp;&nbsp;</span>&nbsp;Frontier:&nbsp;</label><span id="visit_array"></span>
                         </div>
@@ -134,6 +134,7 @@
         <script src="question.js"></script>
         <script src="delta_refresh.js"></script>
         <script src="preset.js"></script>
+
     </body>
 
 </html>

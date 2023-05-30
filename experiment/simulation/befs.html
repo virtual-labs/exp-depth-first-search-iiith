@@ -20,7 +20,7 @@
                 <div class="column">
                     <div class="v-tabs">
                         <ul>
-                            <li id="Task1"  onclick="window.location.href = 'index.html';">
+                            <li id="Task1" onclick="isDFS = true; window.location.href = 'index.html';">
                                 <a>
                                     Depth First Search
                                 </a>
@@ -56,10 +56,11 @@
                     <div class="v-datalist-title">Controls</div>
                     <div id="controlls" class="v-datalist-row">
                         <div style="margin:5px 0px">
-                            <label id="sv">Start Vertex: </label><input id="svi" type="number" value=0 min=0 style="width:50px;"/>
+                            <label id="sv">Start Vertex: </label><input id="svi" type="number" value=0 min=0 style="width:50px;"/><br>
+                            <label id="ev">Goal Vertex: </label><input id="evi" type="number" value=0 min=0 style="width:50px;" onchange="vclear();"/>
                         </div>
                         <div style="margin:5px 0px">
-                            <button class="button" onclick="isDFS = false; vclear(); SN = Number(document.getElementById('svi').value); visit.push(SN); parent[visit[0]] = undefined; BEFS();">Start BEFS</button>
+                            <button class="button" onclick="isDFS = false; vclear(); SN = Number(document.getElementById('svi').value); EndVect = document.getElementById('evi').value; visit.push(SN); parent[visit[0]] = undefined; BEFS();">Start BEFS</button>
                             <button id="nuxt" class="button" onclick="BEFS();">Next</button>
                         </div>
                         <div style="margin:5px 0px">
@@ -95,27 +96,30 @@
                 <div class="v-datalist-container" style="padding-left: 5px;">
                     <div class="v-datalist-title">Information</div>
                     <div id="info" class="v-datalist-row" style="text-align:left;">
-                        <!--div style="margin:5px 0px">
-                            <label><span style="background-color:cyan;">&nbsp;&nbsp;</span>&nbsp;Visiting:&nbsp;</label><span id="visit_node"></span>
-                        </div-->
+                        <div style="margin:5px 0px">
+                            <label><span style="background-color:yellow;">&nbsp;&nbsp;</span>&nbsp;Goal Vector:&nbsp;</label><span id="goal_node"></span>
+                        </div>
                         <div style="margin:5px 0px">
                             <label><span style="background-color:orange;">&nbsp;&nbsp;</span>&nbsp;Frontier:&nbsp;</label><span id="visit_array"></span>
                         </div>
-                        <!--div style="margin:5px 0px">
-                            <label><span style="background-color:yellow;">&nbsp;&nbsp;</span>&nbsp;To Visit:&nbsp;</label><span id="visiting_node"></span>
+                        <div style="margin:5px 0px">
+                            <label><span style="#background-color:cyan;">&nbsp;&nbsp;</span>&nbsp;Visiting:&nbsp;</label><span id="visit_node"></span>
                         </div>
                         <div style="margin:5px 0px">
+                            <label><span style="#background-color:yellow;">&nbsp;&nbsp;</span>&nbsp;To Visit:&nbsp;</label><span id="visiting_node"></span>
+                        </div>
+                        <!--div style="margin:5px 0px">
                             <label><span style="background-color:black;">&nbsp;&nbsp;</span>&nbsp;Visited:&nbsp;</label><span id="visited_array"></span>
                         </div-->
                     </div>
                 </div>
                 <div id="QuestionBox" class="v-datalist-container" style="padding-left: 5px;margin-top: 20px;">
-                    <div class="v-datalist-title" style="color: red;">Question</div>
+                    <div class="v-datalist-title" style="color: red;" id="qoro" >Question</div>
                     <div id="info" class="v-datalist-row" style="text-align:center;">
                         <div style="margin:5px 0px">
                             <p id="question">Lorem ipsum dolor sit amet. Qui quae illum rem neque veritatis ab dicta minima. Ut quidem voluptatibus ab dignissimos magnam.</p>
                         </div>
-                        <div style="margin:10px 0px">
+                        <div id="submitform" style="margin:10px 0px">
                                 <label id="ans">Answer: </label><input id="answer" type="number" style="width:50px;"/><br>
 								<button style="margin-top: 2px;" class="button" onclick="submit(document.getElementById('answer').value);">Submit</button>
                         </div>

@@ -1,6 +1,9 @@
 var correct_ans = 1;
 var isQuestion = false;
 
+var NoQuestion = true;
+var chance = 0.5;
+
 var selected;
 var QnA = [
 	['What is the next node to visit?', 'visit[0]']

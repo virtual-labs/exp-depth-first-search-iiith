@@ -31,9 +31,10 @@ function refresh() {
     //document.getElementById("bf").style.color = "";
     document.getElementById("td").style.color = "";
 
-    // document.getElementById('visit_node').innerHTML = String(e);
-	document.getElementById('visit_array').innerHTML = '[' + String(visit.slice()) + ']'
-    // document.getElementById('visiting_node').innerHTML = String(visit[visit.length - 1]);
+	if (!isDFS) document.getElementById('goal_node').innerHTML = (EndVect == null) ? "undefined" : String(EndVect);
+	document.getElementById('visit_array').innerHTML = '[' + String(visit.slice()) + ']';
+    document.getElementById('visit_node').innerHTML = String(e);
+    document.getElementById('visiting_node').innerHTML = String(visit[0]);
     // document.getElementById('visited_array').innerHTML = '[' + String(visited.slice(0, visited.length-1)) + ']';
     // console.log(visit);
     
@@ -59,10 +60,18 @@ function refresh() {
         oneshotAuto = true;
     }
     
-    if (isQuestion) {
+    if (isQuestion || isGoal) {
 		document.getElementById('QuestionBox').style.display = "";
 	} else {
 		document.getElementById('QuestionBox').style.display = "none";
+	}
+	
+	if (isGoal) {
+		document.getElementById('qoro').innerHTML = "Observation";
+		document.getElementById('submitform').style.display = "none";
+	} else {
+		document.getElementById('qoro').innerHTML = "Question";
+		document.getElementById('submitform').style.display = "";
 	}
 }
 

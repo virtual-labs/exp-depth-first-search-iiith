@@ -10,8 +10,7 @@ var noEdges = false;
 var nuxtdis = false;
 var refreshIntervalId = null;
 
-var NoQuestion = false;
-var chance = 0.5;
+var EndVect = null;
 
 function ALG_STOP() {
     console.log("ALG_STOP");
@@ -65,42 +64,39 @@ function DFS() {
     }
 }
 
+var isGoal = false;
 function BEFS() {
-    started=true;
 	if (isQuestion) { return; }
-    if (noEdges) {
-        if (e == SN) {
-            ALG_STOP();
-            return;
-        }
-        visited.push(e);
-        trav_circle(e, parent[e]);
-        c = parent[e];
-        e = parent[e];
-        for (const next of edges[e].slice()) {
-            if (!visited.includes(next) && !exist.includes(next)) {
-                noEdges = false;
-            }
-        }
-        return;
-    }
     e = visit.shift();
     weight.shift();
+    trav_circle(c, e);
     c = e;
-    if (!noEdges) visited.push(e);
-    trav_circle(parent[e], e);  
-	if (!NoQuestion && visit.length != 0) { // chance = 2/10
+    visited.push(e);
+    if (e == EndVect) {
+		isGoal = true;
+		document.getElementById('question').innerHTML = "Found Goal!";
+		ALG_STOP();
+		return;
+	}
+	if (visit.length == 0 && started) {
+		ALG_STOP();
+		isGoal = true;
+		document.getElementById('question').innerHTML = "Didn't Find Goal";
+		return;
+	}
+    started=true;
+	if (!NoQuestion) { // chance = 2/10
 		var rand = Math.random();
 		console.log(rand);
-		if (rand < chance) isQuestion = true;
+		if (rand < chance) {
+			isQuestion = true;
+			question();
+		}
 	}
-    noEdges = true;
     for (const next of edges[e].slice()) {
         if (!visited.includes(next) && !visit.includes(next) && exist[next]) {
-            noEdges = false;
 			visit.push(next);
 			weight.push(edges_weight[e][edges[e].slice().indexOf(next)]);
-			parent[next] = e;
         }
     }
 
@@ -108,6 +104,7 @@ function BEFS() {
         for (let j = 0; j < weight.length - i - 1; j++) {	
             if (weight[j + 1] < weight[j]) {
                 [visit[j + 1], visit[j]] = [visit[j], visit[j + 1]];
+				//console.log("nobutwhybutafterinbefs: ", visit);
                 [weight[j + 1], weight[j]] = [weight[j], weight[j + 1]];
             }
         }

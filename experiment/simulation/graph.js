@@ -99,11 +99,23 @@ canv.addEventListener('mousemove', function(e) {
 canv.addEventListener('dblclick', function(e) {});
 
 document.addEventListener('keydown', function(e) {
-    //console.log("keydown ", e.keyCode);
-    if (e.keyCode == 66) {
+    // console.log("keydown ", e.keyCode);
+    if (e.keyCode == 66) { // b
         tforce();
-    } else if (e.keyCode == 67) {
+    } else if (e.keyCode == 67) { // c
         cclear();
+    } else if (e.keyCode == 68) { // d
+		isDFS = !isDFS;
+		console.log("isDFS: ", isDFS);
+    } else if (e.keyCode == 32) { // `space`
+		if (!started) {
+			vclear();
+			SN = Number(document.getElementById('svi').value);
+			visit.push(SN);
+			if (!isDFS) EndVect = document.getElementById('evi').value;
+		}
+		if (isDFS) DFS();
+		else BEFS();
     }
 });
 
@@ -123,11 +135,13 @@ function vclear() {
     e = undefined;
     ep = undefined;
     visit = [];
-    tmp = [];
+    weight = [];
     parent = [];
     visited = [];
     visited_edge = [];
     started = false;
+    isGoal = false;
+    EndVect = null;
     noEdges = false;
     oneshotAuto = true;
     console.log("clear");
@@ -224,7 +238,7 @@ function drawField() {
     for (var i = 0; i < n; ++i) {
         if (exist[i]) {
             ctx.fillStyle = '#97d23d';
-            for (var k = 0; k < visited.length -1; k++) {
+            for (var k = 0; k < visited.length; k++) {
                 if (visited[k] == i) {
                     ctx.fillStyle = 'black';
                     break;
@@ -246,12 +260,15 @@ function drawField() {
             if (i == c && !visited.slice(0, visited.length - 1).includes(c)) {
                 ctx.fillStyle = 'orange';
             }
+            if (i == EndVect) {
+                ctx.fillStyle = 'yellow';
+            }
             ctx.beginPath();
             ctx.arc(nodes[i][0], nodes[i][1], nodeR * (1 + (i == last)), 0, Math.PI * 2);
             ctx.fill();
             ctx.fillStyle = '#616161';
-            for (var k = 0; k < visited.length -1; k++) {
-                if (visited[k] == i) {
+            for (var k = 0; k < visited.length; k++) {
+                if (visited[k] == i && i != c) {
                     ctx.fillStyle = 'white';
                     break;
                 }

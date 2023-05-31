@@ -104,6 +104,7 @@ document.addEventListener('keydown', function(e) {
         tforce();
     } else if (e.keyCode == 67) { // c
         cclear();
+    /*
     } else if (e.keyCode == 68) { // d
 		isDFS = !isDFS;
 		console.log("isDFS: ", isDFS);
@@ -116,6 +117,7 @@ document.addEventListener('keydown', function(e) {
 		}
 		if (isDFS) DFS();
 		else BEFS();
+    */
     }
 });
 
@@ -140,7 +142,7 @@ function vclear() {
     visited = [];
     visited_edge = [];
     started = false;
-    isGoal = false;
+    isObservation = false;
     EndVect = null;
     noEdges = false;
     oneshotAuto = true;

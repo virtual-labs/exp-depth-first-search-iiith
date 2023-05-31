@@ -9,7 +9,6 @@ function valid_input(l, inp) {
 }
 
 var oneshotAuto = true;
-var isDFS = true;
 
 function refresh() {
     canv.width = canv.offsetWidth;
@@ -31,7 +30,6 @@ function refresh() {
     //document.getElementById("bf").style.color = "";
     document.getElementById("td").style.color = "";
 
-	if (!isDFS) document.getElementById('goal_node').innerHTML = (EndVect == null) ? "undefined" : String(EndVect);
 	document.getElementById('visit_array').innerHTML = '[' + String(visit.slice()) + ']';
     document.getElementById('visit_node').innerHTML = String(e);
     document.getElementById('visiting_node').innerHTML = String(visit[0]);
@@ -44,11 +42,7 @@ function refresh() {
             document.getElementById('nuxt').disabled = true;
             if (oneshotAuto) {
                 oneshotAuto = false;
-                if (isDFS) {
-					refreshIntervalId = setInterval(DFS, 1000*input.value)
-                } else {
-					refreshIntervalId = setInterval(BEFS, 1000*input.value)
-				}
+                refreshIntervalId = setInterval(DFS, 1000*input.value)
             }
         } else {
             document.getElementById('nuxt').disabled = false;
@@ -60,13 +54,13 @@ function refresh() {
         oneshotAuto = true;
     }
     
-    if (isQuestion || isGoal) {
+    if (isQuestion || isObservation) {
 		document.getElementById('QuestionBox').style.display = "";
 	} else {
 		document.getElementById('QuestionBox').style.display = "none";
 	}
 	
-	if (isGoal) {
+	if (isObservation) {
 		document.getElementById('qoro').innerHTML = "Observation";
 		document.getElementById('submitform').style.display = "none";
 	} else {

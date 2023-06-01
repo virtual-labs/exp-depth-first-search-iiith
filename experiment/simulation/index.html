@@ -1,100 +1,133 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="static/libs/vis.min.css" rel="stylesheet" type="text/css" />
-	<link href="css/main.css" rel="stylesheet" type="text/css" />
-	<!-- <link rel="stylesheet" href="../../assets/css/common-styles-responsive.css"> -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/css/style.min.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/MotionPathPlugin.min.js"></script>
-		<title>
-			Depth-First Search Visualization 
-		</title>
-		
-		<!-- css sheet for how the page is laid out -->
-		
-		<link rel="stylesheet" href="visualizationPageStyle.css">
-			
-			
-		<!--jqueury stuff.  Only used for the animation speed slider. -->
-		<link rel="stylesheet" href="js/ThirdParty/jquery-ui-1.8.11.custom.css">
-				
-		<script src="js/ThirdParty/jquery-1.5.2.min.js"></script>
-		<script src="js/ThirdParty/jquery-ui-1.8.11.custom.min.js"></script>
-				
-		<!-- Javascript for the actual visualization code -->
-		<script type = "text/javascript" src = "js/AnimationLibrary/CustomEvents.js"> </script>
-		<script type = "text/javascript" src = "js/AnimationLibrary/UndoFunctions.js"> </script>
-		<script type = "text/javascript" src = "js/AnimationLibrary/AnimatedObject.js"> </script>
-		<script type = "text/javascript" src = "js/AnimationLibrary/AnimatedLabel.js"> </script>
-		<script type = "text/javascript" src = "js/AnimationLibrary/AnimatedCircle.js"> </script>
-		<script type = "text/javascript" src = "js/AnimationLibrary/AnimatedRectangle.js"> </script>
-		<script type = "text/javascript" src = "js/AnimationLibrary/AnimatedLinkedList.js"> </script>
-		<script type = "text/javascript" src = "js/AnimationLibrary/HighlightCircle.js"> </script>
-		<script type = "text/javascript" src = "js/AnimationLibrary/Line.js"> </script>
-		<script type = "text/javascript" src = "js/AnimationLibrary/ObjectManager.js"> </script>
-		<script type = "text/javascript" src = "js/AnimationLibrary/AnimationMain.js"> </script>
-		
-		<script type = "text/javascript" src = "js/AlgorithmLibrary/Algorithm.js"> </script>
-		<script type = "text/javascript" src = "js/AlgorithmLibrary/Graph.js"> </script>
-		<script type = "text/javascript" src = "js/AlgorithmLibrary/DFS.js"> </script> 
-				
-			
-	 </head> 
-	
-	<body onload="init();" class="VisualizationMainPage">
+<html lang="en">
 
-		<div class="container" style="margin-top:1%;">
-			<div class="columns is-centered">
-			  <div class="column">
-				<div class="v-instruction-container">
-				  <div id="instruction-title" class="v-collapsible is-size-5">Instructions</div>
-				  <div class="v-content" style="text-align: left; padding-left: 10%; padding-right: 10%;">
-					<ul style="list-style: disc;">
-					  <li>Select the speed through slider</li>
-					  <li>Enter a start vertex and click run to see the simulation.</li>
-					  <li>The DFS goes in ascending order, so a node will always go to the node with the smallest value.</li>
-					</ul>
-				  </div>
-				</div>
-			  </div>
-			</div>
-		  </div>
-		  <br />
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<div id = "container">
-			
-			<div id = "mainContent"  class="div1"> 
-				
-				<div id = "algoControlSection">
-					<!-- Table for buttons to control specific animation (insert/find/etc) -->
-					<!-- (filled in by javascript code specific to the animtion) -->
-					<table id="AlgorithmSpecificControls"> </table> 
-				</div>
-				
-					<!-- Drawing canvas where all animation is done.  Note:  can be resized in code -->
-									
-				<canvas id="canvas" width="1000" height="500"></canvas>
-				
-				<div id = "generalAnimationControlSection">
-					<!-- Table for buttons to control general animation (play/pause/undo/etc) -->
-					<!-- (filled in by javascript code, specifically AnimationMain.js)  -->
+        <title id="title"></title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/css/style.min.css">
+        <link rel="stylesheet" href="./css/main.css">
+    </head>
 
-					<table id="GeneralAnimationControls">  </table>		
-				</div>
-				
-			</div> <!-- mainContent -->
-			
-			<!-- <div id="footer">  
-				<p><a href="Algorithms.html">Algorithm Visualizations</a></p>
-			</div> -->
+    <body onload="isWeigted = false" style="padding-left: 150px;padding-right: 150px;padding-top: 20px;">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-one-quarter v-instruction-title">
+                    Tasks
+                </div>
+                <div class="column">
+                    <div class="v-tabs">
+                        <ul>
+                            <li class="is-active" id="Task1">
+                                <a>
+                                    Depth First Search
+                                </a>
+                            </li>                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-		</div><!-- container -->
+        <div class="columns is-centered">
+            <div class="column">
+                <div class="v-collapsible-instruction-container v-instruction-container">
+                    <div id="instruction-title" class="v-collapsible is-size-5">Instructions</div>
+                    <div class="v-content" style="text-align: left; padding-left: 5%; padding-right: 5%;">
+                        <ul id="instruc" style="list-style: disc;">
+							<li>Help</li>
+							<li>Help</li>
+							<li>Help</li>
+							<li>Help</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-		<script src="static/libs/vis.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
-		
-	</body>
-</body>
+        <div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start">
+
+            <div class="column is-2-desktop is-12-tablet is-12-mobile">
+                <div class="v-datalist-container">
+                    <div class="v-datalist-title">Controls</div>
+                    <div id="controlls" class="v-datalist-row">
+                        <div style="margin:5px 0px">
+                            <label id="sv">Start Vertex: </label><input id="svi" type="number" value=0 min=0 style="width:50px;"/>
+                        </div>
+                        <div style="margin:5px 0px">
+                            <button class="button" onclick="vclear(); SN = Number(document.getElementById('svi').value); visit.push(SN); parent[visit[0]] = undefined; DFS();">Start DFS</button>
+                            <button id="nuxt" class="button" onclick="DFS();">Next</button>
+                        </div>
+                        <div style="margin:5px 0px">
+                            <input id="auto" type=checkbox>&nbsp;&nbsp;AutoPlay</button>
+                            <input id="autor" type="range" min="1" max="2" step="0.1" value="1.5" class="slider" id="myRange" onchange="if (refreshIntervalId != null) {console.log(refreshIntervalId, ); clearInterval(refreshIntervalId);refreshIntervalId = setInterval(DFS, 1000*input.value);}">
+                        </div>
+                        <div style="margin:5px 0px">
+                            <button id="tf" class="button" onclick="tforce();">Toggle Forces</button>
+                            <button id="cc" class="button" onclick="cclear();">Clear</button>
+                            <button class="button" onclick="vclear();">Clear Visited</button>
+                        </div>
+                        <div style="margin:5px 0px 5px 15px; text-align: left;">
+                            <div>
+                                <label style="font-weight: bold; font-size:12px;">Note: Overwrites Graph</label>
+                            </div>
+                            <label>  <u>Tree Controlls:</u> </label>
+                            <!--div>
+                                <label>&nbsp;&nbsp;| </label><label id="bf">Branching Factor: </label><input id="bfi" type="number" value=2 min=0 max=3 style="width:50px;" onclick="preset();"/>
+                            </div-->
+                            <div style="margin:5px 0px">
+                                <label>&nbsp;&nbsp;| </label><label id="td">Tree Depth: </label><input id="tdi" type="number" value=3 min=0 max=5 style="width:50px;" onclick="preset();"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column is-8-desktop is-12-tablet is-12-mobile">
+                <canvas id="canvas" style="width:100%;" height="500" oncontextmenu="return false;"></canvas>
+            </div>
+
+            <div class="column is-2-desktop is-12-tablet is-12-mobile">
+                <div class="v-datalist-container" style="padding-left: 5px;">
+                    <div class="v-datalist-title">Information</div>
+                    <div id="info" class="v-datalist-row" style="text-align:left;">
+                        <div style="margin:5px 0px">
+                            <label><span style="background-color:orange;">&nbsp;&nbsp;</span>&nbsp;Frontier:&nbsp;</label><span id="visit_array"></span>
+                        </div>
+                        <div style="margin:5px 0px">
+                            <label><span style="#background-color:cyan;">&nbsp;&nbsp;</span>&nbsp;Visiting:&nbsp;</label><span id="visit_node"></span>
+                        </div>
+                        <div style="margin:5px 0px">
+                            <label><span style="#background-color:yellow;">&nbsp;&nbsp;</span>&nbsp;To Visit:&nbsp;</label><span id="visiting_node"></span>
+                        </div>
+                        <!--div style="margin:5px 0px">
+                            <label><span style="background-color:black;">&nbsp;&nbsp;</span>&nbsp;Visited:&nbsp;</label><span id="visited_array"></span>
+                        </div-->
+                    </div>
+                </div>
+                <div id="QuestionBox" class="v-datalist-container" style="padding-left: 5px;margin-top: 20px;">
+                    <div class="v-datalist-title" style="color: red;" id="qoro" >Question</div>
+                    <div id="info" class="v-datalist-row" style="text-align:center;">
+                        <div style="margin:5px 0px">
+                            <p id="question">Lorem ipsum dolor sit amet. Qui quae illum rem neque veritatis ab dicta minima. Ut quidem voluptatibus ab dignissimos magnam.</p>
+                        </div>
+                        <div id="submitform" style="margin:10px 0px">
+                                <label id="ans">Answer: </label><input id="answer" type="number" style="width:50px;"/><br>
+								<button style="margin-top: 2px;" class="button" onclick="submit(document.getElementById('answer').value);">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+
+        <script src="js/main.js"></script>
+        <script src="js/delta_refresh.js"></script>
+        <script src="js/graph.js"></script>
+        <script src="js/mvcircle.js"></script>
+        <script src="js/question.js"></script>
+        <script src="js/preset.js"></script>
+    </body>
+
 </html>

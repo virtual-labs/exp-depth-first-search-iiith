@@ -142,6 +142,7 @@ function vclear() {
     visited = [];
     visited_edge = [];
     started = false;
+    isQuestion = false;
     isObservation = false;
     EndVect = null;
     noEdges = false;

@@ -29,8 +29,8 @@
         },
         {
             "target": "simulation.html",
-            "source": "simulation/index.html",
-            "label": "Simulation",
+            "source": "simulation/simulation.html",
+            "label": "Demo",
             "unit-type": "task",
             "content-type": "simulation"
         },

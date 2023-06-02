@@ -2,38 +2,89 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "In Tic-Tac-Toe, if we don't use depth as parameter while mapping to graph, then which of the following will be true?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "There will be only 1 path",
+        "b": "We will terminate quickly as compared to when we use depth",
+        "c": "Both a and b",
+        "d": "None of these"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "There can be multiple paths",
+        "b": "It can take maximum time",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "d",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Alpha beta pruning is used for?",
+      "answers": {
+        "a": "Reducing number of nodes that are considered",
+        "b": "Optimize minimax algorithm",
+        "c": "Mostly useful when large number of states such as in chess",
+        "d": "All of these"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "d",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What is the main disadvantage of the Minimax algorithm?",
+      "answers": {
+        "a": "It is computationally intensive for large game trees",
+        "b": "It does not guarantee finding the optimal solution",
+        "c": "It is difficult to implement",
+        "d": "It only works for zero-sum games"
+      },
+      "explanations": {
+        "a": "The Minimax algorithm can be computationally intensive for large game trees, which can make it impractical to use for some games.",
+        "b": "",
+        "c": "",
+        "d": "a"
       },
       "correctAnswer": "a",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "What is the main advantage of using a Minimax tree in game theory?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "It guarantees finding the optimal solution",
+        "b": "It is computationally efficient for large game trees",
+        "c": "It is easier to implement than other algorithms",
+        "d": "It works well for non-zero-sum games"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "A Minimax tree guarantees finding the optimal solution in game theory, as it considers all possible moves and outcomes.",
+        "b": "",
+        "c": "",
+        "d": ""
       },
-      "correctAnswer": "c",
-      "difficulty": "beginner"
+      "correctAnswer": "a",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What is the time complexity of the Minimax algorithm for a complete tree where n is the number of moves?",
+      "answers": {
+        "a": "O(n)",
+        "b": "O(log n)",
+        "c": "O(n^2)",
+        "d": "O(2^n)"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": "The time complexity of the Minimax algorithm for a complete game tree is O(2^n), where n is the number of moves in the game."
+      },
+      "correctAnswer": "d",
+      "difficulty": "intermediate"
     }
   ]
 }

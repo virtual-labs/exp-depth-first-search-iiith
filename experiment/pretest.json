@@ -2,38 +2,82 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "Can there be more than 1 final path in a graph using minimax?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Yes",
+        "b": "No"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "When multiple minimum/maximum nodes are present then we can have multiple paths as we can chose any of the those",
+        "b": ""
+      },
+      "correctAnswer": "a",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "To solve minimax algorithm on a graph what kind of traversal do we use?",
+      "answers": {
+        "a": "Depth First Trasversal",
+        "b": "Breadth First Traversal",
+        "c": "None of these"
+      },
+      "explanations": {
+        "a": "Since we have to build bottom up so we perform Depth First Traversal",
+        "b": "",
+        "c": ""
       },
       "correctAnswer": "a",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "Where can we use minimax algorithm?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Chess",
+        "b": "Go",
+        "c": "Tic Tac Toe",
+        "d": "All of these"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": "We can use minimax algorithm in all of these"
+      },
+      "correctAnswer": "d",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What is the primary objective of the minimax search algorithm in game theory?",
+      "answers": {
+        "a": "To maximize the score for the maximizing player.",
+        "b": "To minimize the score for the minimizing player.",
+        "c": "To maximize the score difference between the maximizing player and the minimizing player.",
+        "d": "To minimize the number of nodes explored during the search."
+      },
+      "explanations": {
+        "a": "option a is incorrect because the objective is not solely focused on maximizing the score for the maximizing player. It takes into account the score difference between the two players.",
+        "b": "option b is incorrect because the objective is not to minimize the score for the minimizing player. The minimizing player's goal is to minimize the score difference.",
+        "c": "The minimax search algorithm is used in game theory to determine the optimal move for a player in a game with perfect information. It aims to maximize the score difference between the maximizing player (often referred to as 'Max') and the minimizing player (often referred to as 'Min'). The algorithm assumes that both players will make optimal moves, and it explores the game tree to find the best possible move for the maximizing player",
+        "d": "option d is incorrect because minimizing the number of nodes explored during the search is not the primary objective of the minimax algorithm. Although minimizing the number of nodes can be a consideration for optimization, the main goal is to maximize the score difference."
       },
       "correctAnswer": "c",
-      "difficulty": "beginner"
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which of the following best describes the concept of alpha-beta pruning in the minimax search algorithm?",
+      "answers": {
+        "a": "A technique used to improve the efficiency of the minimax algorithm by discarding irrelevant subtrees.",
+        "b": "A strategy employed by the maximizing player to maximize their score in a game.",
+        "c": "A heuristic function that evaluates the quality of a move in the minimax algorithm.",
+        "d": "A method to randomly select moves in order to explore different paths in the game tree."
+      },
+      "explanations": {
+        "a": "Alpha-beta pruning is a technique used in the minimax search algorithm to reduce the number of nodes that need to be evaluated during the search. It improves the efficiency of the algorithm by discarding irrelevant subtrees that are guaranteed to not affect the final decision.",
+        "b": "",
+        "c": ""
+      },
+      "correctAnswer": "a",
+      "difficulty": "advanced"
     }
   ]
 }

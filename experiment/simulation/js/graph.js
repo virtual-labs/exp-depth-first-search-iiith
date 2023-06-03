@@ -147,6 +147,8 @@ function vclear() {
     EndVect = null;
     noEdges = false;
     oneshotAuto = true;
+	if (refreshIntervalId != null) clearInterval(refreshIntervalId);
+	refreshIntervalId = null;
     console.log("clear");
 }
 

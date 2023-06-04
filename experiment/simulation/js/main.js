@@ -10,7 +10,7 @@ var noEdges = false;
 var nuxtdis = false;
 var refreshIntervalId = null;
 
-var isObservation = false;
+var isObservation = false; 
 
 function ALG_STOP() {
     console.log("ALG_STOP");

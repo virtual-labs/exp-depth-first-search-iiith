@@ -2,38 +2,74 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "What happens when visited nodes are not kept track of in DFS?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "The DFS algorithm will still find the optimal solution.",
+        "b": "The DFS algorithm may get stuck in an infinite loop.",
+        "c": "The DFS algorithm will terminate but may not find the optimal solution.",
+        "d": "The DFS algorithm will be faster but may miss some nodes.",
+        "e": "The DFS algorithm will not work at all and fail to find any solution."
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "",
+        "b": "It will continuously re-visit nodes, since they haven’t been marked and therefore closed, causing a loop.",
+        "c": "",
+        "d": "",
+        "e": ""
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Assuming that nodes at the same depth as the goal node have no successors, what is the space complexity of DFS? (Here b is the branching factor and d is the depth of the goal node)",
+      "answers": {
+        "a": "O(b^d)",
+        "b": "O(bd)",
+        "c": "O(b+d)",
+        "d": "O(blog(d))"
+      },
+      "explanations": {
+        "a": "Here m = d, because we know the depth of the goal node, so we don’t have to go to the depth of the tree.",
+        "b": "",
+        "c": "",
+        "d": ""
       },
       "correctAnswer": "a",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "What if a FIFO queue is used instead of a LIFO queue (stack) in DFS?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "The algorithm becomes more memory efficient.",
+        "b": "The algorithm would become equivalent to BFS (Breadth First Search)",
+        "c": "The algorithm would not work properly, i.e, it will not traverse the graph properly and/or completely",
+        "d": "No change in the algorithm, i.e, it remains unaffected"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "",
+        "b": "The underlying code implementation of BFS and DFS is the same except for the data structure which decides how the nodes are visited.",
+        "c": "",
+        "d": ""
       },
-      "correctAnswer": "c",
-      "difficulty": "beginner"
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Iterative Deepening Depth First Search (IDDFS) is a variation of DFS in which search is performed using a series of depth-limited DFS iterations. It starts with a depth limit of 0 and performs a DFS with that limit. If the solution is not found, it incrementally increases the depth limit by 1 and performs another DFS and so on. Which of the following is true about IDFFS?",
+      "answers": {
+        "a": "Not complete, not optimal, O(bd) space complexity, O(b^d) time complexity",
+        "b": "Complete, not optimal, O(b^d) space complexity, O(b^d) time complexity",
+        "c": "Not complete, optimal, O(bd) space complexity, O(bd) time complexity",
+        "d": "Complete, optimal, O(bd) space complexity, O(b^d) time complexity"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": " IDFFS combines the best features of BFS(Best First Search) and DFS. It has the space complexity of DFS. Even though it revisits the top nodes again, it doesn’t incur an extra cost in the worst case time complexity. It is complete and optimal because if there is a goal node, it will open it and doesn’t get stuck due to infinite depths."
+      },
+      "correctAnswer": "d",
+      "difficulty": "advanced"
     }
   ]
 }

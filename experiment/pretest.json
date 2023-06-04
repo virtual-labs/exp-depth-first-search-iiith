@@ -2,38 +2,87 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "What kind of data structure does DFS use?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "FIFO Queue",
+        "b": "LIFO Queue (Stack)",
+        "c": "Linked List",
+        "d": "Heap"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
       },
-      "correctAnswer": "a",
+      "correctAnswer": "b",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "Does DFS find the shortest path to the goal node?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Yes",
+        "b": "No",
+        "c": "Sometimes",
+        "d": "Never"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "",
+        "b": "",
+        "c": "IT depends on the example",
+        "d": ""
       },
       "correctAnswer": "c",
       "difficulty": "beginner"
+    },
+    {
+      "question": "What advantage does DFS have over BFS (Breadth First Search)?",
+      "answers": {
+        "a": "Optimality",
+        "b": "Completeness",
+        "c": "Less Memory Usage (Space Complexity)",
+        "d": "Less Time Complexity"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Does DFS keep in memory all of the visited nodes?",
+      "answers": {
+        "a": "Yes",
+        "b": "No"
+      },
+      "explanations": {
+        "a": "",
+        "b": "A depth-first tree search needs to store only a single path from the root to a leaf node, along with the remaining unexpanded sibling nodes for each node on the path",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "When is DFS not complete?",
+      "answers": {
+        "a": "When the goal node is not reachable from the source vertex",
+        "b": "When the state space is infinite",
+        "c": "Either a) or b)",
+        "d": "It is always complete"
+      },
+      "explanations": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
     }
   ]
 }

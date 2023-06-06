@@ -52,7 +52,7 @@ canv.addEventListener('click', function(e) {
         nodes.push([x, y]);
         edges.push([]);
         exist.push(true);
-        if (exist[last] && last != -1) {
+        if (exist[last] && last != -1 && n-1 != last) {
             if (edges[last].indexOf(n - 1))
             edges[last].push(n - 1);
             edges[n - 1].push(last);
@@ -60,6 +60,10 @@ canv.addEventListener('click', function(e) {
         }
 		n++;
     } else {
+		if (v == last) {
+			last = -1;
+			return;
+		}
         if (!exist[last] || last == -1) {
             last = v;
         } else {

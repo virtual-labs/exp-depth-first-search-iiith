@@ -56,7 +56,8 @@ function DFS() {
 	}
     noEdges = true;  
     for (const next of edges[e].slice().reverse()) {
-        if (!visited.includes(next) && !visit.includes(next) && exist[next]) {
+        if (!visited.includes(next) && exist[next]) {
+			if (visit.includes(next)) visit.splice(visit.indexOf(next), 1);
             noEdges = false;  
             visit.unshift(next);
             parent[next] = e;

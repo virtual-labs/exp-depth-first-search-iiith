@@ -36,16 +36,18 @@ function DFS() {
         c = parent[e];
         e = parent[e];
         for (const next of edges[e].slice()) {
-            if (!visited.includes(next) && !exist.includes(next)) {
+            if (!visited.includes(next) && exist[next] && parent[next] == e) {
                 noEdges = false;
+                console.log(next);
             }
         }
+        console.log('end: ', e);
         return;
     }
     e = visit.shift();
     c = e;
     if (!noEdges) visited.push(e);
-    trav_circle(parent[e], e);  
+    trav_circle(parent[e], e);
 	if (!NoQuestion && visit.length != 0) { // chance = 2/10
 		var rand = Math.random();
 		console.log(rand);
@@ -56,8 +58,9 @@ function DFS() {
 	}
     noEdges = true;  
     for (const next of edges[e].slice().reverse()) {
-        if (!visited.includes(next) && exist[next]) {
-			if (visit.includes(next)) visit.splice(visit.indexOf(next), 1);
+        if (!visited.includes(next) && !visit.includes(next) && exist[next]) {
+			//if (visit.includes(next)) visit.splice(visit.indexOf(next), 1);
+			//console.log('next: ', next);
             noEdges = false;  
             visit.unshift(next);
             parent[next] = e;

@@ -292,7 +292,7 @@ function drawField() {
                 ctx.lineWidth = edgeD;                    
             }
             ctx.beginPath();
-            ctx.arc(nodes[i][0], nodes[i][1], nodeR * 2, 0, Math.PI * 2);
+            ctx.arc(nodes[i][0], nodes[i][1], nodeR * 1.5, 0, Math.PI * 2);
             ctx.stroke();
         }
     }

@@ -1,13 +1,3 @@
-function valid_input(l, inp) {
-    if(inp.value == "") {
-        return;
-    } else if(inp.value > Number(inp.max) || inp.value < Number(inp.min) || parseFloat(inp.value) % 1 != 0 || !exist[Number(inp.value)]) {
-        l.style.color = "red";
-    } else {
-        l.style.color = "";
-    }
-}
-
 var oneshotAuto = true;
 
 function refresh() {
@@ -24,14 +14,30 @@ function refresh() {
 
     var inp = document.getElementById("svi");
     inp.max = exist.length-1;
-    valid_input(document.getElementById("sv"), inp);
+    if(inp.value == "") {
+        return;
+    } else if(inp.value > Number(inp.max) || inp.value < Number(inp.min) || parseFloat(inp.value) % 1 != 0 || !exist[Number(inp.value)]) {
+        document.getElementById("sv").style.color = "red";
+    } else {
+        document.getElementById("sv").style.color = "";
+    }
+
+    inp = document.getElementById("tdi");
+    if(inp.value == "") {
+        return;
+    } else if(inp.value > Number(inp.max) || inp.value < Number(inp.min) || parseFloat(inp.value) % 1 != 0) {
+        document.getElementById("td").style.color = "red";
+    } else {
+        document.getElementById("td").style.color = "";
+    }
+    
     //valid_input(document.getElementById("bf"), document.getElementById("bfi"));
-    valid_input(document.getElementById("td"), document.getElementById("tdi"));
+    //valid_input(document.getElementById("td"), document.getElementById("tdi"));
     
     //document.getElementById("bf").style.color = "gray";
-    document.getElementById("td").style.color = "gray";
+    //document.getElementById("td").style.color = "gray";
     //document.getElementById("bf").style.color = "";
-    document.getElementById("td").style.color = "";
+    //document.getElementById("td").style.color = "";
 
 	document.getElementById('visit_array').innerHTML = '[' + String(visit.slice()) + ']';
     document.getElementById('visit_node').innerHTML = String(e);

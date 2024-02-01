@@ -48,19 +48,28 @@ function refresh() {
     if (document.getElementById('auto').checked) {
         if (started) {
             nuxtdis = true;
+            document.getElementById('startdfs').disabled = true;
             document.getElementById('nuxt').disabled = true;
             if (oneshotAuto) {
                 oneshotAuto = false;
                 refreshIntervalId = setInterval(DFS, 1000*input.value)
             }
         } else {
+            document.getElementById('startdfs').disabled = false;
             document.getElementById('nuxt').disabled = false;
         }
     } else if (refreshIntervalId != null) {
         clearInterval(refreshIntervalId);
         nuxtdis = false;
+        document.getElementById('startdfs').disabled = false;
         document.getElementById('nuxt').disabled = false;
         oneshotAuto = true;
+    }
+
+    if (started) {
+        document.getElementById('startdfs').disabled = true;
+    } else {
+        document.getElementById('startdfs').disabled = false;
     }
     
     if (isQuestion || isObservation) {

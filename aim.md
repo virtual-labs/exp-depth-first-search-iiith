@@ -1,0 +1,1 @@
+To understand how Depth First Search algorithm works.
